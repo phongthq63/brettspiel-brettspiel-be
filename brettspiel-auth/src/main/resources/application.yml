@@ -1,0 +1,9 @@
+server:
+  port: ${PORT:8080}
+  
+spring:
+  application:
+    name: brettspiel-auth
+    path-provider: ${PATH_PROVIDER:}
+  swagger:
+    enable: ${SWAGGER:true}
