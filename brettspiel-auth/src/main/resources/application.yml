@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: brettspiel-auth
-    path-provider: ${PATH_PROVIDER:}
-  swagger:
-    enable: ${SWAGGER:true}
+
+
+springdoc:
+  api-docs:
+    enabled: true
