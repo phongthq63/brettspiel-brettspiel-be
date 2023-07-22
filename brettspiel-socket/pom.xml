@@ -19,15 +19,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- socket-io server -->
-        <dependency>
-            <groupId>com.corundumstudio.socketio</groupId>
-            <artifactId>netty-socketio</artifactId>
-            <version>1.7.23</version>
+            <groupId>com.phongtq.brettspiel</groupId>
+            <artifactId>brettspiel-socket-common</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
     </dependencies>

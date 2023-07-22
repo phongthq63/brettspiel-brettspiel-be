@@ -6,12 +6,10 @@ import com.corundumstudio.socketio.Transport;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 import com.corundumstudio.socketio.listener.ExceptionListener;
 import com.phongtq.brettspiel.socket.handler.LoginHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-
-import javax.annotation.Resource;
 
 /**
  * Created by Quách Thanh Phong
@@ -25,6 +23,12 @@ public class SocketIOConfig {
 
     @Value("${socket-io.port}")
     private Integer port;
+
+    @Value("${socket-io.max-frame-payload-length}")
+    private int maxFramePayloadLength;
+
+    @Value("${socket-io.max-http-content-length}")
+    private int maxHttpContentLength;
 
     @Value("${socket-io.boss-count}")
     private int bossCount;
@@ -44,10 +48,10 @@ public class SocketIOConfig {
     @Value("${socket-io.ping-interval}")
     private int pingInterval;
 
-    @Resource
+    @Autowired
     private ExceptionListener exceptionListener;
 
-    @Resource
+    @Autowired
     private LoginHandler loginHandler;
 
 
@@ -56,22 +60,30 @@ public class SocketIOConfig {
         SocketConfig socketConfig = new SocketConfig();
         socketConfig.setTcpNoDelay(true);
         socketConfig.setSoLinger(0);
+//        socketConfig.setReuseAddress(false);
+
         com.corundumstudio.socketio.Configuration config = new com.corundumstudio.socketio.Configuration();
-        config.setSocketConfig(socketConfig);
-//        config.setUseLinuxNativeEpoll(true);
-        config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
         config.setOrigin("*:*");
         config.setPort(port);
+        config.setTransports(Transport.POLLING, Transport.WEBSOCKET);
         config.setContext(context);
         config.setBossThreads(bossCount);
         config.setWorkerThreads(workCount);
+//        config.setUseLinuxNativeEpoll(true);
         config.setAllowCustomRequests(allowCustomRequests);
         config.setUpgradeTimeout(upgradeTimeout);
         config.setPingTimeout(pingTimeout);
         config.setPingInterval(pingInterval);
+        config.setMaxHttpContentLength(maxHttpContentLength);
+        config.setMaxFramePayloadLength(maxFramePayloadLength);
 //        config.setStoreFactory(new RedissonStoreFactory(redissonClient));
         config.setExceptionListener(exceptionListener);
         config.setAuthorizationListener(loginHandler);
+        config.setAddVersionHeader(true);
+        config.setHttpCompression(true);
+        config.setWebsocketCompression(true);
+        config.setSocketConfig(socketConfig);
+
         return new SocketIOServer(config);
     }
 

@@ -1,0 +1,23 @@
+#============================================================================
+# netty socket io setting
+#============================================================================
+# The host can be set to localhost or local IP for local testing, and can be changed to the server IP when running on a Linux server
+socket-io:
+  context: ${SOCKETIO_CONTEXT:/socket.io}
+  port: ${PORT_SOCKET:8699}
+  authentication: true
+  cluster: true
+  # Set the maximum length of data processed per frame to prevent others from using big data to attack the server
+  max-frame-payload-length: 1048576
+  # Set http interaction maximum content length
+  max-http-content-length: 1048576
+  # socket The size of the number of connections (for example, the boss thread group that only listens to one port is 1)
+  boss-count: 1
+  work-count: 100
+  allow-custom-requests: true
+  # Protocol upgrade timeout (in milliseconds), the default is 10 seconds. HTTP handshake upgrade to ws protocol timeout
+  upgrade-timeout: 10000
+  # Ping message timeout time (milliseconds), the default is 10 seconds. If no heartbeat message is received within this time interval, a timeout event will be sent
+  ping-timeout: 30000
+  # Ping Message interval (milliseconds), the default is 5 seconds. The client sends a heartbeat message interval to the server
+  ping-interval: 10000

@@ -11,6 +11,15 @@
 
     <artifactId>brettspiel-auth</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.phongtq.brettspiel</groupId>
+            <artifactId>brettspiel-common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

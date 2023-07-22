@@ -5,7 +5,20 @@ spring:
   application:
     name: brettspiel-auth
 
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://root:root@localhost:27017}
+      database: ${MONGO_DATABASE:brettspiel}
+
 
 springdoc:
-  api-docs:
+  swagger-ui:
     enabled: true
+
+jwt:
+  secret: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
+  issuer: brettspiel
+
+snowflake:
+  worker-id: 1
+  cluster-id: 1

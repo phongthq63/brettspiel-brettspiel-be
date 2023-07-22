@@ -19,6 +19,8 @@ public class LoginHandler implements AuthorizationListener {
 
     @Override
     public boolean isAuthorized(HandshakeData handshakeData) {
+
         return true;
     }
+
 }

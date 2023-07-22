@@ -8,8 +8,12 @@ spring:
 
 
 springdoc:
-  api-docs:
+  swagger-ui:
     enabled: true
+
+snowflake:
+  worker-id: 1
+  cluster-id: 1
 
 #============================================================================
 # netty socket io setting
@@ -19,6 +23,7 @@ socket-io:
   context: ${SOCKETIO_CONTEXT:/socket.io}
   port: ${PORT_SOCKET:8699}
   authentication: true
+  cluster: false
   # Set the maximum length of data processed per frame to prevent others from using big data to attack the server
   max-frame-payload-length: 1048576
   # Set http interaction maximum content length
