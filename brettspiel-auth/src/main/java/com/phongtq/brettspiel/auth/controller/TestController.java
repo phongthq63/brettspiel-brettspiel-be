@@ -1,7 +1,9 @@
 package com.phongtq.brettspiel.auth.controller;
 
+import com.phongtq.brettspiel.auth.client.TestClient;
 import com.phongtq.brettspiel.auth.entity.User;
 import com.phongtq.brettspiel.auth.repository.IUserRepository;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 /**
  * Created by Quách Thanh Phong
@@ -23,22 +27,25 @@ public class TestController {
     private IUserRepository userRepository;
 
     @Autowired
+    private TestClient testClient;
+
+    @Autowired
     private ReactiveMongoTemplate reactiveMongoTemplate;
 
 
     @GetMapping("")
     public Mono<Object> test() {
+        return Mono.just("ssssss");
+    }
 
-        return reactiveMongoTemplate.insert(User.builder()
-                .email("asd")
-                .password("asd")
-                .build()).then(Mono.just("Ok"));
+    @GetMapping("/test")
+    public Mono<Object> testtest() {
+        return testClient.test();
+    }
 
-//        return accountRepository.save(Account.builder()
-//                        .userId("asd")
-//                        .username("asd")
-//                        .password("asd")
-//                .build()).then(Mono.just("Ok"));
+    @GetMapping("/token")
+    public Object token() {
+        return testClient.test();
     }
 
 }

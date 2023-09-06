@@ -1,4 +1,4 @@
-package com.phongtq.brettspiel.security;
+package com.phongtq.brettspiel.auth.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

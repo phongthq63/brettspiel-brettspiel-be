@@ -35,31 +35,32 @@ public class LoginServiceImpl implements ILoginService {
         // Encryption password before save
         String encryptPassword = DigestUtil.md5Hex(loginRequest.getPassword());
 
-        return userRepository.findUserByUsernamePassword(loginRequest.getUsername(), encryptPassword)
-                .zipWhen(user -> {
-                    TokenInfo accessToken = jwtProvider.generateToken(user.getId(), user.getUsername(), new HashSet<>());
-                    String refreshToken = IdGenerator.nextUUID();
-
-                    return Mono.zip(Mono.just(accessToken), Mono.just(refreshToken));
-                })
-                .doOnNext(tuple -> {
-                    User user = tuple.getT1();
-                    String refreshToken = tuple.getT2().getT2();
-
-                    //Save refresh token
-                    // todo
-                })
-                .map(tuple -> {
-                    TokenInfo accessToken = tuple.getT2().getT1();
-                    String refreshToken = tuple.getT2().getT2();
-
-                    return R.ok(UserTokenDTO.builder()
-                            .tokenType("Bearer")
-                            .accessToken(accessToken.getToken())
-                            .refreshToken(refreshToken)
-                            .expiresIn(accessToken.getExpiration())
-                            .build());
-                })
-                .switchIfEmpty(Mono.just(R.failed("Account not exist. ")));
+//        return userRepository.findUserByUsernamePassword(loginRequest.getUsername(), encryptPassword)
+//                .zipWhen(user -> {
+//                    TokenInfo accessToken = jwtProvider.generateToken(user.getId(), user.getUsername(), new HashSet<>());
+//                    String refreshToken = IdGenerator.nextUUID();
+//
+//                    return Mono.zip(Mono.just(accessToken), Mono.just(refreshToken));
+//                })
+//                .doOnNext(tuple -> {
+//                    User user = tuple.getT1();
+//                    String refreshToken = tuple.getT2().getT2();
+//
+//                    //Save refresh token
+//                    // todo
+//                })
+//                .map(tuple -> {
+//                    TokenInfo accessToken = tuple.getT2().getT1();
+//                    String refreshToken = tuple.getT2().getT2();
+//
+//                    return R.ok(UserTokenDTO.builder()
+//                            .tokenType("Bearer")
+//                            .accessToken(accessToken.getToken())
+//                            .refreshToken(refreshToken)
+//                            .expiresIn(accessToken.getExpiration())
+//                            .build());
+//                })
+//                .switchIfEmpty(Mono.just(R.failed("Account not exist. ")));
+        return Mono.empty();
     }
 }

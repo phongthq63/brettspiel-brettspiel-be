@@ -26,10 +26,10 @@ public class UserRepositoryImpl implements ICustomUserRepository {
         return reactiveMongoTemplate.findOne(query, User.class);
     }
 
-    @Override
-    public Mono<User> findUserByUsernamePassword(String username, String password) {
-        Query query = Query.query(Criteria.where("username").is(username)
-                .and("password").is(password));
-        return reactiveMongoTemplate.findOne(query, User.class);
-    }
+//    @Override
+//    public Mono<User> findUserByUsernamePassword(String username, String password) {
+//        Query query = Query.query(Criteria.where("username").is(username)
+//                .and("password").is(password));
+//        return reactiveMongoTemplate.findOne(query, User.class);
+//    }
 }

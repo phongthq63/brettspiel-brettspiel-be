@@ -1,4 +1,4 @@
-package com.phongtq.brettspiel.security;
+package com.phongtq.brettspiel.auth.security;
 
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.core.Authentication;

@@ -11,6 +11,6 @@ public interface ICustomUserRepository {
 
     Mono<User> findUserByUsername(String username);
 
-    Mono<User> findUserByUsernamePassword(String username, String password);
+//    Mono<User> findUserByUsernamePassword(String username, String password);
 
 }

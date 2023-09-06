@@ -18,12 +18,6 @@
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
         </dependency>
 
-        <!-- Spring security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
         <!-- Hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -41,6 +35,14 @@
             <groupId>com.auth0</groupId>
             <artifactId>jwks-rsa</artifactId>
             <version>0.22.0</version>
+        </dependency>
+
+        <!-- Feign -->
+        <dependency>
+            <groupId>com.playtika.reactivefeign</groupId>
+            <artifactId>feign-reactor-spring-cloud-starter</artifactId>
+            <version>4.0.0</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>
